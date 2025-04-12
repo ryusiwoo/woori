@@ -15,7 +15,8 @@
             color: #333;
         }
         header {
-            background: url('https://i.imgur.com/DYOPv4M.jpeg') center/cover no-repeat;
+            background:
+                url('https://i.imgur.com/DYOPv4M.jpeg') center/cover no-repeat;
             color: white;
             position: relative;
             height: 400px;
@@ -154,39 +155,31 @@
         </div>
         <div class="like-container">
             <a href="https://drive.google.com/drive/folders/1InufbIjpY5iQ-m8h7dNsT5jNbzSo9I8h" target="_blank" class="like-button">📷 사진 보기</a>
-            <button class="like-button" id="likeButton">👍 좋아요</button>
+            <button class="like-button" onclick="increaseLike()">👍 좋아요</button>
             <a href="https://naver.me/FG7qpdiP" target="_blank" class="like-button">💰 회비 확인</a>
         </div>
         <span class="like-count" id="likeCount">0</span>
     </div>
 
     <script>
-        const webAppUrl = 'https://script.google.com/macros/s/AKfycbz0A972KDCmHEsHTWvIWjS7ZWOZP1T1VkWwZKOCEAsrncJgefsBUILvwVJRjeE7SZ5v/exec'; // Apps Script에서 제공된 웹앱 URL로 변경
+    // 로컬 스토리지에서 저장된 값을 불러오기
+    let likeCount = localStorage.getItem("likeCount") ? parseInt(localStorage.getItem("likeCount")) : 0;
 
-        // Google Sheets에서 좋아요 숫자 가져오기
-        fetch(webAppUrl)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("likeCount").textContent = data.likes;
-            });
+    // 페이지 로드 시 초기화
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("likeCount").textContent = likeCount;
+    });
 
-        // 좋아요 숫자 증가 및 Google Sheets에 업데이트
-        document.getElementById("likeButton").addEventListener("click", () => {
-            let likeCount = parseInt(document.getElementById("likeCount").textContent) + 1;
+    // 좋아요 버튼 클릭 이벤트
+    function increaseLike() {
+        likeCount++;
+        document.getElementById("likeCount").textContent = likeCount;
 
-            // Google Sheets에 데이터 전송
-            fetch(webAppUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ likes: likeCount })
-            })
-            .then(() => {
-                document.getElementById("likeCount").textContent = likeCount;
-            });
-        });
-    </script>
+        // 로컬 스토리지에 좋아요 카운트 저장
+        localStorage.setItem("likeCount", likeCount);
+    }
+</script>
+
 </body>
 
 </html>
