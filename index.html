@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사패산 산행 이야기</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #a0c4ff, #caffbf);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background:
+                url('https://i.imgur.com/DYOPv4M.jpeg') center/cover no-repeat;
+            color: white;
+            position: relative;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 28px;
+            margin: 0;
+            position: absolute;
+            top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        header p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0;
+            position: absolute;
+            bottom: -10px;
+            text-align: center;
+            width: 100%;
+            color: #000;
+        }
+        .main-content {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .navigation a {
+            display: inline-block;
+            padding: 12px 25px;
+            color: white;
+            background: #009688;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .navigation a:hover {
+            background: #00796b;
+            transform: scale(1.1);
+        }
+        .testimonial {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .testimonial h2 {
+            color: #00796b;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+        .speech-bubble {
+            position: relative;
+            background: #ffe082;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 18px;
+            color: #333;
+            text-align: left;
+            line-height: 1.8;
+            display: inline-block;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 40px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 20px 20px 0;
+            border-color: #ffe082 transparent transparent transparent;
+            display: block;
+        }
+        .like-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .like-button {
+            background-color: #009688;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .like-button:hover {
+            background-color: #00796b;
+        }
+        .like-count {
+            margin-left: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🌄 간만이야 교외선<br>반가워 사패산🌄</h1>
+        <p>산과 함께하는 즐거운 시간! <br> 수색차량 우리산악회의 산행 사진과 정보를 확인해보세요.</p>
+    </header>
+    <div class="main-content">
+        <h2>오늘의 산행</h2>
+        <p>2025년 4월 11일, 사패산에서 아름다운 자연과 함께한 산행의 추억을 공유합니다!</p>
+        <p>산행은 건강한 관계를 형성하고 자연 속에서 에너지를 얻는 최고의 활동입니다. 함께한 순간을 확인해보세요!</p>
+    </div>
+    <div class="testimonial">
+        <h2>산행대장의 후기</h2>
+        <div class="speech-bubble">
+            <p>오늘 C조 단기산행.. 날씨도 좋고, B조, D조, 회원분들도 참석해서 너무 즐거운 산행이었네요~^^
+                처음엔 완주할 수 있을까 걱정도 했지만... 중간중간 막걸리로 에너지 보충하면서 즐겁게 정상까지 gogo..ㅎㅎ
+                정상에서 아이스크림으로 더위를 식히고, 내려오는 건 신나게...ㅎㅎ
+                능곡에서 민물매운탕으로 몸보신하고 마무리 했네요~~
+                오늘 하루 모두 고생 많으셨습니다..
+            </p>
+        </div>
+        <div class="like-container">
+            <a href="https://drive.google.com/drive/folders/1InufbIjpY5iQ-m8h7dNsT5jNbzSo9I8h" target="_blank" class="like-button">📷 사진 보기</a>
+            <button class="like-button" onclick="increaseLike()">👍 좋아요</button>
+            <a href="https://naver.me/FG7qpdiP" target="_blank" class="like-button">💰 회비 확인</a>
+        </div>
+        <span class="like-count" id="likeCount">0</span>
+    </div>
+
+    <script>
+        let likeCount = 0;
+
+        function increaseLike() {
+            likeCount++;
+            document.getElementById("likeCount").textContent = likeCount;
+        }
+    </script>
+</body>
+
+</html>
